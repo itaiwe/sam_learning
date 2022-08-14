@@ -2,6 +2,7 @@
 from itertools import combinations, product
 from typing import List, Dict, Set, Any, Tuple
 
+from pddl_plus_parser.models import Predicate, SignatureType, Action
 
 
 def n_choose_k(array: List[Any], k: int, effect_type: str) -> List[Tuple[Any, ...]]:
@@ -35,7 +36,7 @@ class ProxyActionGenerator:
         return unit_clause_effects
 
     def get_precondition_fluents(
-            self, precondition_cnfs: Dict[str, Set[ComparablePredicate]]) -> Set[ComparablePredicate]:
+            self, precondition_cnfs: Dict[str, Set[Predicate]]) -> Set[Predicate]:
         """
 
         :param precondition_cnfs:
@@ -48,9 +49,9 @@ class ProxyActionGenerator:
         return precondition_predicates
 
     def create_proxy_actions(self, action_name: str, action_signature: SignatureType,
-                             surely_preconditions: Set[ComparablePredicate],
-                             add_effect_cnfs: Dict[str, Set[ComparablePredicate]],
-                             delete_effect_cnfs: Dict[str, Set[ComparablePredicate]]) -> List[Action]:
+                             surely_preconditions: Set[Predicate],
+                             add_effect_cnfs: Dict[str, Set[Predicate]],
+                             delete_effect_cnfs: Dict[str, Set[Predicate]]) -> List[Action]:
         """Creates the proxy action permutations based on the algorithm to create the power set of safe actions.
 
         :param action_name: the name of the original action that exists in the original domain.
@@ -80,14 +81,14 @@ class ProxyActionGenerator:
                     delete_effects.append(effect)
 
             all_preconditions = list(surely_preconditions.union(preconditions))
-            effect = Effect()
+            # effect = Effect()
             effect.addlist = surely_add_effects.union(add_effects)
             effect.dellist = surely_delete_effects.union(delete_effects)
-            new_action = Action(name=f"proxy-{action_name}-{index}",
-                                signature=action_signature,
-                                precondition=all_preconditions,
-                                effect=effect)
-            proxy_actions.append(new_action)
+            # new_action = Action(name=f"proxy-{action_name}-{index}",
+            #                     signature=action_signature,
+            #                     precondition=all_preconditions,
+            #                     effect=effect)
+            # proxy_actions.append(new_action)
 
         return proxy_actions
 
