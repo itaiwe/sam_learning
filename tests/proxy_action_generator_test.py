@@ -1,14 +1,14 @@
 """integration tests for the proxy action generator algorithm"""
-from pathlib import Path
-
-from pddl_plus_parser.lisp_parsers import DomainParser
-from pytest import fixture
-from typing import Iterable, List, Set, Dict, NoReturn
-
-from pddl_plus_parser.models import Action, Domain, GroundedPredicate, Predicate
-
-from sam_learning.core import ProxyActionGenerator
-from tests.consts import WOODWORKING_DOMAIN_PATH
+# from pathlib import Path
+#
+# from pddl_plus_parser.lisp_parsers import DomainParser
+# from pytest import fixture
+# from typing import Iterable, List, Set, Dict, NoReturn
+#
+# from pddl_plus_parser.models import Action, Domain, GroundedPredicate, Predicate
+#
+# from sam_learning.core import ProxyActionGenerator
+# from tests.consts import WOODWORKING_DOMAIN_PATH
 
 #
 # def print_proxy_actions(proxy_actions: List[Action]) -> NoReturn:
