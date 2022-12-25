@@ -8,7 +8,7 @@ from typing import List, Tuple, Dict, Set
 
 from pddl_plus_parser.models import Observation, Predicate, ActionCall, State, Domain, ObservedComponent, PDDLObject, GroundedPredicate
 
-from ...sam_helper import PredicatesMatcher, extract_effects, LearnerDomain, contains_duplicates, VocabularyCreator, \
+from .sam_helper import PredicatesMatcher, extract_effects, LearnerDomain, contains_duplicates, VocabularyCreator, \
     LearnerAction
 
 from . import Model, LearnedAction, LearnedFluent
