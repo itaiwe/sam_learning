@@ -216,15 +216,23 @@ class SAMLearner:
             for component in observation.components:
                 self.handle_single_trajectory_component(component, observation.grounded_objects)
 
-        # learning_report = {action_name: "OK" for action_name in self.partial_domain.actions}
+        learning_report = {action_name: "OK" for action_name in self.partial_domain.actions}
         # return self.partial_domain, learning_report
+        print(learning_report)
         actions = set()
         for a in self.partial_domain.actions.values():
-            actions.add(LearnedAction(a.name, list(a.signature.keys()), {"precond": a.positive_preconditions, "add": a.add_effects, \
-                "delete": a.delete_effects}))
+            # print(a.name)
+            # print(list(a.signature.keys()))
+            # print(a.positive_preconditions)
+            # print(a.add_effects)
+            # print(a.delete_effects)
+            act = LearnedAction(a.name, list(a.signature.keys()), **{"precond": a.positive_preconditions, "add": a.add_effects, \
+                "delete": a.delete_effects})
+            actions.add(act)
         fluents = set()
         for f in self.partial_domain.predicates.values():
-            fluents.add(LearnedFluent(f.name, list(f.signature.keys())))
+            fl = LearnedFluent(f.name, list(f.signature.keys()))
+            fluents.add(fl)
         return Model(fluents, actions)
 
     def deduce_initial_inequality_preconditions(self) -> None:
